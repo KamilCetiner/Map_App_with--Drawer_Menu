@@ -4,7 +4,8 @@ import {
   View,
   Text,
   TouchableOpacity,
-  Image
+  Image,
+  Dimensions
 } from 'react-native';
 
 import { NavigationContainer } from '@react-navigation/native';
@@ -13,6 +14,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import Main from './Main';
 import {CustomSidebarMenu} from './components';
+import {CreateAccountPage} from './pages'
 
 
 const Stack = createStackNavigator();
@@ -66,6 +68,36 @@ function firstScreenStack({ navigation }) {
 }
 
 
+function secondScreenStack({navigation}) {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerLeft: () => (
+          <NavigationDrawerStructure navigationProps={navigation} />
+        ),
+        headerStyle: {
+          backgroundColor: 'red', //Set Header color
+          height : Dimensions.get('window').height / 13,
+            
+
+        },
+      
+
+      }}>
+      <Stack.Screen
+        name="CreateAccountPage"
+        component={CreateAccountPage}
+        options={{
+          title: 'Create an Account', //Set Header Title
+          
+        }}
+      />
+
+    </Stack.Navigator>
+  );
+}
+
+
 
 function App(props) {
   return (
@@ -82,6 +114,11 @@ function App(props) {
           name="Main"
           options={{ drawerLabel: 'Main'}}
           component={firstScreenStack} />
+
+        <Drawer.Screen
+          name="CreateAccountPage"
+          options={{ drawerLabel: 'Create an Account'}}
+          component={secondScreenStack} />
        
       </Drawer.Navigator>
     </NavigationContainer>
