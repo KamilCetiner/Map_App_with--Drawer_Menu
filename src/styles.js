@@ -68,6 +68,73 @@ export const detailStyle = StyleSheet.create({
   },
 });
 
+
+export const authStyle = StyleSheet.create({
+  container: {
+    backgroundColor: 'white',
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: -70
+  },
+  logo: {
+    height: Dimensions.get('window').height / 6,
+    resizeMode: 'contain',
+  },
+  logoText: {
+      color: 'purple',
+      fontSize: 35,
+      fontWeight: 'bold'
+  }
+});
+
+export const button = StyleSheet.create({
+  container: {
+    bottom:-20,
+    left: 20,
+  },
+
+  Touch: {
+  backgroundColor: '#ff3d00',
+  width: Dimensions.get('window').width * 0.90 , 
+  height: 30,
+  marginTop: 7,
+  padding:30,
+  borderRadius: 10,  
+  },
+  text:{
+    textAlign: 'center',
+    fontSize: 15,
+    color: '#212121',
+    fontWeight: 'bold',
+  },
+ 
+})
+
+
+
+export const input_style = StyleSheet.create({
+  container: {
+  backgroundColor: '#eceff1',
+  width: Dimensions.get('window').width * 0.90 , 
+  marginTop: 7,
+  padding:5,
+  borderRadius: 10,
+  left: 20,
+  
+  },
+})
+
+
+
+export const timelinePage = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#cfd8dc'
+  },
+});
+
+
 export const mapStyle = [
   {
     "elementType": "geometry",

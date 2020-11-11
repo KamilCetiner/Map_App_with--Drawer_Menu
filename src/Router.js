@@ -14,7 +14,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import Main from './Main';
 import {CustomSidebarMenu} from './components';
-import {CreateAccountPage} from './pages'
+import {Login, Sign} from './pages'
 
 
 const Stack = createStackNavigator();
@@ -78,17 +78,47 @@ function secondScreenStack({navigation}) {
         headerStyle: {
           backgroundColor: 'red', //Set Header color
           height : Dimensions.get('window').height / 13,
-            
-
         },
       
-
       }}>
       <Stack.Screen
-        name="CreateAccountPage"
-        component={CreateAccountPage}
+        name="Login"
+        component={Login}
         options={{
-          title: 'Create an Account', //Set Header Title
+          title: 'Login', //Set Header Title
+          
+        }}
+      />
+      <Stack.Screen
+        name="Sign"
+        component={Sign}
+        options={{
+          title: 'Sign', //Set Header Title
+          
+        }}
+      />
+
+    </Stack.Navigator>
+  );
+}
+function thirdScreenStack({navigation}) {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerLeft: () => (
+          <NavigationDrawerStructure navigationProps={navigation} />
+        ),
+        headerStyle: {
+          backgroundColor: 'red', //Set Header color
+          height : Dimensions.get('window').height / 13,
+        },
+      
+      }}>
+      <Stack.Screen
+        name="Sign"
+        component={Sign}
+        options={{
+          title: 'Sign In', //Set Header Title
           
         }}
       />
@@ -116,9 +146,14 @@ function App(props) {
           component={firstScreenStack} />
 
         <Drawer.Screen
-          name="CreateAccountPage"
-          options={{ drawerLabel: 'Create an Account'}}
+          name="Login"
+          options={{ drawerLabel: 'Login'}}
           component={secondScreenStack} />
+       
+        <Drawer.Screen
+          name="Sign"
+          options={{ drawerLabel: 'Sign'}}
+          component={thirdScreenStack} />
        
       </Drawer.Navigator>
     </NavigationContainer>
