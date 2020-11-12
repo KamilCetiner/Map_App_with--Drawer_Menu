@@ -46,7 +46,7 @@ const NavigationDrawerStructure = (props)=> {
 
 function firstScreenStack({ navigation }) {
   return (
-      <Stack.Navigator initialRouteName="Main">
+      <Stack.Navigator >
         <Stack.Screen
           name="Main"
           component={Main}
@@ -70,7 +70,7 @@ function firstScreenStack({ navigation }) {
 
 function secondScreenStack({navigation}) {
   return (
-    <Stack.Navigator
+    <Stack.Navigator initialRouteName="Login"
       screenOptions={{
         headerLeft: () => (
           <NavigationDrawerStructure navigationProps={navigation} />
@@ -89,14 +89,8 @@ function secondScreenStack({navigation}) {
           
         }}
       />
-      <Stack.Screen
-        name="Sign"
-        component={Sign}
-        options={{
-          title: 'Sign', //Set Header Title
-          
-        }}
-      />
+      
+     
 
     </Stack.Navigator>
   );
@@ -131,7 +125,7 @@ function thirdScreenStack({navigation}) {
 
 function App(props) {
   return (
-    <NavigationContainer>
+    <NavigationContainer  >
       <Drawer.Navigator
         drawerContentOptions={{
           activeTintColor: 'blue',

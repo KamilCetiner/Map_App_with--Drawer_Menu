@@ -20,16 +20,19 @@ const Sign = (props) => {
   const [passwordRepeat, setPasswordRepeat] = useState('');
 
   async function sign() {
-    
+
+    console.log( password)
+
     if (password === passwordRepeat) {
       try {
         await auth().createUserWithEmailAndPassword(email, password);
-        
         props.navigation.goBack();
       } catch (error) {
+        console.log(error)
         Alert.alert('ClarusChat', 'An error occured');
       }
     } else {
+      
       Alert.alert('ClarusChat', 'Passwords are not match');
     }
   }
@@ -65,7 +68,7 @@ const Sign = (props) => {
                 placeholder: 'Type your password again..',
                 secureTextEntry: true,
               }}
-              onType={(value) => setPasswordRepeat(value)}
+              onValue={(value) => setPasswordRepeat(value)}
             />
 
             <Button title="Create account" onPress={() => sign()} />

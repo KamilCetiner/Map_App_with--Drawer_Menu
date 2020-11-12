@@ -1,5 +1,8 @@
 import React, {useState} from 'react';
 import {View, Image, KeyboardAvoidingView, ScrollView, SafeAreaView, Text, Alert} from 'react-native'
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
 import { Button, Input } from '../components';
 
 import {authStyle, button} from '../styles'
@@ -7,7 +10,7 @@ import {resolveAuthError} from '../functions'
 import auth from '@react-native-firebase/auth';
 
 
-const Login = () => {
+const Login = (props) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -15,18 +18,18 @@ const Login = () => {
         console.log(email, password)
         auth()
           .signInWithEmailAndPassword(email, password)
-          .then(() => alert("OK"))
-          .catch((err) => Alert.alert("ClarusChat", resolveAuthError(err.code)));
+          .then(() => props.navigation.navigate('Main'))
+          .catch((err) => Alert.alert("Google Map", resolveAuthError(err.code)));
         try {
           if (email === '' || password === '') {
               console.log(email)
-            Alert.alert('ClarusChat', resolveAuthError('auth/null-value'));
+            Alert.alert('Google Map', resolveAuthError('auth/null-value'));
           } else {
             await auth().signInWithEmailAndPassword(email, password);
-            props.navigation.navigate("Sign");
+            props.navigation.navigate("Main");
           }
         } catch (error) {
-          Alert.alert('ClarusChat', resolveAuthError(error.code));
+          Alert.alert('Google Map', resolveAuthError(error.code));
         }
       }
 
@@ -62,6 +65,7 @@ const Login = () => {
             <Button
               title="Sign Up"
               noBorder
+              onPress={() => props.navigation.navigate('Sign')}
             />
           </View>
         </ScrollView>
