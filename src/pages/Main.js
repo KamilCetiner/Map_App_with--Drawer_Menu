@@ -2,9 +2,9 @@ import Axios from 'axios';
 import React, {useEffect, useState, useRef} from 'react';
 import {SafeAreaView, View, Text, FlatList, Modal} from 'react-native';
 import MapView, {Marker} from 'react-native-maps';
-import {City, RestaurantDetail, SearchBar} from './components';
+import {City, RestaurantDetail, SearchBar} from '../components';
 
-import { mapStyle } from './styles'
+import { mapStyle } from '../styles'
 
 let originalList = [];
 
@@ -72,7 +72,7 @@ const Main = (props) => {
     <SafeAreaView style={{flex: 1}}>
       <View style={{flex: 1}}>
         <MapView
-          customMapStyle={mapStyle}
+          
           ref={mapRef}
           style={{flex: 1}}
           initialRegion={{
@@ -116,4 +116,4 @@ const Main = (props) => {
   );
 };
 
-export default Main;
+export  {Main};

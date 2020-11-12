@@ -12,13 +12,14 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
-import Main from './Main';
 import {CustomSidebarMenu} from './components';
-import {Login, Sign} from './pages'
+import {Login,Main, Sign} from './pages'
 
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
+
+
 
 const NavigationDrawerStructure = (props)=> {
   //Structure for the navigatin Drawer
@@ -36,7 +37,8 @@ const NavigationDrawerStructure = (props)=> {
           style={{
             width: 25,
             height: 25,
-            margin: 10
+            margin: 10,
+            
           }}
         />
       </TouchableOpacity> 
@@ -44,9 +46,37 @@ const NavigationDrawerStructure = (props)=> {
   );
 }
 
+function secondScreenStack({navigation}) {
+  return (
+    <Stack.Navigator 
+      screenOptions={{
+        headerLeft: () => (
+          <NavigationDrawerStructure navigationProps={navigation} />
+        ),
+        headerStyle: {
+          backgroundColor: 'red', //Set Header color
+          height : Dimensions.get('window').height / 13,
+        },
+      
+      }}>
+      <Stack.Screen 
+        name="Login"
+        component={Login}
+        options={{
+          title: 'Login', //Set Header Title
+          
+        }}
+      />
+      
+     
+
+    </Stack.Navigator>
+  );
+}
+
 function firstScreenStack({ navigation }) {
   return (
-      <Stack.Navigator >
+      <Stack.Navigator  >
         <Stack.Screen
           name="Main"
           component={Main}
@@ -68,36 +98,10 @@ function firstScreenStack({ navigation }) {
 }
 
 
-function secondScreenStack({navigation}) {
-  return (
-    <Stack.Navigator initialRouteName="Login"
-      screenOptions={{
-        headerLeft: () => (
-          <NavigationDrawerStructure navigationProps={navigation} />
-        ),
-        headerStyle: {
-          backgroundColor: 'red', //Set Header color
-          height : Dimensions.get('window').height / 13,
-        },
-      
-      }}>
-      <Stack.Screen
-        name="Login"
-        component={Login}
-        options={{
-          title: 'Login', //Set Header Title
-          
-        }}
-      />
-      
-     
 
-    </Stack.Navigator>
-  );
-}
 function thirdScreenStack({navigation}) {
   return (
-    <Stack.Navigator
+    <Stack.Navigator 
       screenOptions={{
         headerLeft: () => (
           <NavigationDrawerStructure navigationProps={navigation} />
@@ -125,7 +129,7 @@ function thirdScreenStack({navigation}) {
 
 function App(props) {
   return (
-    <NavigationContainer  >
+    <NavigationContainer   >
       <Drawer.Navigator
         drawerContentOptions={{
           activeTintColor: 'blue',
@@ -134,6 +138,7 @@ function App(props) {
           itemStyle: { marginVertical: 5, },
         }}
           drawerContent={(props) => <CustomSidebarMenu {...props} />}>
+
         <Drawer.Screen
           name="Main"
           options={{ drawerLabel: 'Main'}}
