@@ -14,26 +14,25 @@ import {
   DrawerItem,
 } from '@react-navigation/drawer';
 
+
 const CustomSidebarMenu = (props) => {
-
-
+  
   return (
     <SafeAreaView style={{flex: 1}}>
+      
       {/*Top Large Image */}
       <Image
-        source={{uri:'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQPGJtCXSOoNeq6eLxV4G6KAx0DtfOLxVMLkA&usqp=CAU'}}
+        source={{uri:'https://pbs.twimg.com/profile_images/421336310071058432/b0oTQWvu_400x400.jpeg'}}
         style={styles.sideMenuProfileIcon}
       /> 
+      <Text style={{marginLeft:5, color:'black', fontWeight:'bold', marginBottom: 20}}></Text>
       <DrawerContentScrollView {...props}>
         <DrawerItemList {...props} />
         <View style={styles.customItem}>
-          <Text
-            onPress={() => {
-              Linking.openURL('https://aboutreact.com/');
-            }}>  </Text>
-          {
+        
+          
                       
-          /* IKON ICIN <Image   
+         {/* <Image   
         source={{uri: 'https://prismic-vc-cdn-assets.imgix.net/1d52b46c-27ed-4280-95fe-7f84c76c8d54_seen_in_deutschland_hintersee.jpg?auto=compress,format?w=1263&format=auto'}}
         style={styles.iconStyle}
           /> */}
@@ -48,6 +47,7 @@ const CustomSidebarMenu = (props) => {
        
       </Text>
     </SafeAreaView>
+
   );
 };
 
@@ -58,6 +58,8 @@ const styles = StyleSheet.create({
     height: 100,
     borderRadius: 100 / 2,
     alignSelf: 'center',
+    marginBottom: 50,
+    marginTop:20
   },
   iconStyle: {
     width: 15,

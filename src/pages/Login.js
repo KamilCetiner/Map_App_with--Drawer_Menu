@@ -3,7 +3,8 @@ import {View, Image, KeyboardAvoidingView, ScrollView, SafeAreaView, Text, Alert
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import { Button, Input } from '../components';
+
+import { Button, Input, CustomSidebarMenu } from '../components';
 
 import {authStyle, button} from '../styles'
 import {resolveAuthError} from '../functions'
@@ -15,14 +16,13 @@ const Login = (props) => {
     const [password, setPassword] = useState('');
 
     async function login() {
-        console.log(email, password)
         auth()
           .signInWithEmailAndPassword(email, password)
-          .then(() => props.navigation.navigate('Main'))
+          .then(() => props.navigation.navigate('Main'))        
+          
           .catch((err) => Alert.alert("Google Map", resolveAuthError(err.code)));
         try {
           if (email === '' || password === '') {
-              console.log(email)
             Alert.alert('Google Map', resolveAuthError('auth/null-value'));
           } else {
             await auth().signInWithEmailAndPassword(email, password);
@@ -32,6 +32,7 @@ const Login = (props) => {
           Alert.alert('Google Map', resolveAuthError(error.code));
         }
       }
+
 
 
     return(

@@ -12,8 +12,14 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
+
+
+
 import {CustomSidebarMenu} from './components';
 import {Login,Main, Sign} from './pages'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
+
 
 
 const Stack = createStackNavigator();
@@ -27,7 +33,7 @@ const NavigationDrawerStructure = (props)=> {
     //Props to open/close the drawer
     props.navigationProps.toggleDrawer();
   };
-
+  
   return (
     <View style={{ flexDirection: 'row' }}>
       <TouchableOpacity onPress={()=> toggleDrawer()}>
@@ -43,7 +49,7 @@ const NavigationDrawerStructure = (props)=> {
         />
       </TouchableOpacity> 
     </View>
-  );
+  ); 
 }
 
 function secondScreenStack({navigation}) {
@@ -54,7 +60,7 @@ function secondScreenStack({navigation}) {
           <NavigationDrawerStructure navigationProps={navigation} />
         ),
         headerStyle: {
-          backgroundColor: 'red', //Set Header color
+          backgroundColor: '#42a5f5', //Set Header color
           height : Dimensions.get('window').height / 13,
         },
       
@@ -82,6 +88,7 @@ function firstScreenStack({ navigation }) {
           component={Main}
           options={{
             title: '', //Set Header Title
+            
             headerLeft: ()=>
               <NavigationDrawerStructure
                 navigationProps={navigation}
@@ -107,7 +114,7 @@ function thirdScreenStack({navigation}) {
           <NavigationDrawerStructure navigationProps={navigation} />
         ),
         headerStyle: {
-          backgroundColor: 'red', //Set Header color
+          backgroundColor: '#42a5f5', //Set Header color
           height : Dimensions.get('window').height / 13,
         },
       
@@ -129,8 +136,9 @@ function thirdScreenStack({navigation}) {
 
 function App(props) {
   return (
-    <NavigationContainer   >
-      <Drawer.Navigator
+
+    <NavigationContainer  >
+      <Drawer.Navigator initialRouteName='Login'
         drawerContentOptions={{
           activeTintColor: 'blue',
           activeBackgroundColor:'#e3f2fd',
@@ -138,24 +146,44 @@ function App(props) {
           itemStyle: { marginVertical: 5, },
         }}
           drawerContent={(props) => <CustomSidebarMenu {...props} />}>
+            
 
         <Drawer.Screen
           name="Main"
-          options={{ drawerLabel: 'Main'}}
-          component={firstScreenStack} />
+          options={{ drawerLabel: 'Main',
+          drawerIcon: config => <Icon  name="home" size={25} style={{marginRight:-10}} color="#5c6bc0" />
+        }}
+          component={firstScreenStack}
+         
+          
+          />
 
         <Drawer.Screen
           name="Login"
-          options={{ drawerLabel: 'Login'}}
+          options={{ drawerLabel: 'Login',
+          drawerIcon: config => <Icon  name="login" size={25} style={{marginRight:-10}} color="#5c6bc0" />
+        
+        }}
           component={secondScreenStack} />
        
         <Drawer.Screen
           name="Sign"
-          options={{ drawerLabel: 'Sign'}}
+          options={{ drawerLabel: 'Sign',
+          drawerIcon: config => <Icon  name="account" size={25} style={{marginRight:-10}} color="#5c6bc0" />
+        }}
+          component={thirdScreenStack} />
+
+
+        <Drawer.Screen
+          name="Logout"
+          options={{ drawerLabel: 'Logout',
+          drawerIcon: config => <Icon  name="account-off" size={25} style={{marginRight:-10}} color="#5c6bc0" />
+        }}
           component={thirdScreenStack} />
        
       </Drawer.Navigator>
     </NavigationContainer>
+
   );
 }
 

@@ -90,17 +90,19 @@ export const authStyle = StyleSheet.create({
 
 export const button = StyleSheet.create({
   container: {
-    bottom:-20,
+    marginBottom:5,
     left: 20,
   },
 
   Touch: {
-  backgroundColor: '#ff3d00',
+  backgroundColor: '#e1f5fe',
   width: Dimensions.get('window').width * 0.90 , 
   height: 30,
   marginTop: 7,
-  padding:30,
+  padding:25,
+  paddingBottom:40,
   borderRadius: 10,  
+  
   },
   text:{
     textAlign: 'center',
@@ -121,7 +123,6 @@ export const input_style = StyleSheet.create({
   padding:5,
   borderRadius: 10,
   left: 20,
-  
   },
 })
 
