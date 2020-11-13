@@ -20,8 +20,7 @@ With this project used GOOGLE FIRE BASE to control account issues.
 - [React](https://reactjs.org/)
 - [React-Native](https://reactnative.dev/)
 - [React-Navigation](https://reactnavigation.org/)
-- [Axios](https://github.com/axios/axios)
-
+- Google Firebase (Authentication)
 
 ## How To Use
 
